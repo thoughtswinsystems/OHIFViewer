@@ -20,6 +20,7 @@ window.config = {
     // above, the number of requests can be go a lot higher.
     prefetch: 25,
   },
+  useNorm16Texture: true,
   // filterQueryParam: false,
   defaultDataSourceName: 'dicomweb',
   /* Dynamic config allows user to pass "configUrl" query string this allows to load config without recompiling application. The regex will ensure valid configuration source */
@@ -32,50 +33,128 @@ window.config = {
   //   // regex: /(https:\/\/hospital.com(\/[0-9A-Za-z.]+)*)|(https:\/\/othersite.com(\/[0-9A-Za-z.]+)*)/
   //   regex: /.*/,
   // },
+
+  // Prod OIDC settings
+  oidc: {
+    // ~ REQUIRED
+    // Authorization Server URL
+    authority: 'https://login.microsoftonline.com/b031c552-2e5b-4f4f-9006-46c53d23f23a/v2.0/',
+    client_id: '622b2e67-dc4f-4bf9-9cff-cc7ef62429f9',
+    redirect_uri: '/callback', // `OHIFStandaloneViewer.js`
+    response_type: 'token', // "implicit"
+    scope: 'openid api://d6c86043-8a7c-444c-a0a3-07cfd8080532/user_impersonation', // email profile openid  https://dicom.healthcareapis.azure.com
+    // ~ OPTIONAL
+    post_logout_redirect_uri: '/logout-redirect.html',
+    automaticSilentRenew: true,
+    revokeAccessTokenOnSignout: true
+  },
   dataSources: [
+    // {
+    //   namespace: '@ohif/extension-default.dataSourcesModule.dicomweb',
+    //   sourceName: 'dicomweb',
+    //   configuration: {
+    //     friendlyName: 'AWS S3 Static wado server',
+    //     name: 'aws',
+    //     wadoUriRoot: 'https://d33do7qe4w26qo.cloudfront.net/dicomweb',
+    //     qidoRoot: 'https://d33do7qe4w26qo.cloudfront.net/dicomweb',
+    //     wadoRoot: 'https://d33do7qe4w26qo.cloudfront.net/dicomweb',
+    //     qidoSupportsIncludeField: false,
+    //     imageRendering: 'wadors',
+    //     thumbnailRendering: 'wadors',
+    //     enableStudyLazyLoad: true,
+    //     supportsFuzzyMatching: false,
+    //     supportsWildcard: true,
+    //     staticWado: true,
+    //     singlepart: 'bulkdata,video',
+    //     // whether the data source should use retrieveBulkData to grab metadata,
+    //     // and in case of relative path, what would it be relative to, options
+    //     // are in the series level or study level (some servers like series some study)
+    //     bulkDataURI: {
+    //       enabled: true,
+    //       relativeResolution: 'studies',
+    //     },
+    //     omitQuotationForMultipartRequest: true,
+    //   },
+    // },
+    // {
+    //   namespace: '@ohif/extension-default.dataSourcesModule.dicomweb',
+    //   sourceName: 'dicomweb2',
+    //   configuration: {
+    //     friendlyName: 'AWS S3 Static wado secondary server',
+    //     name: 'aws',
+    //     wadoUriRoot: 'https://d28o5kq0jsoob5.cloudfront.net/dicomweb',
+    //     qidoRoot: 'https://d28o5kq0jsoob5.cloudfront.net/dicomweb',
+    //     wadoRoot: 'https://d28o5kq0jsoob5.cloudfront.net/dicomweb',
+    //     qidoSupportsIncludeField: false,
+    //     supportsReject: false,
+    //     imageRendering: 'wadors',
+    //     thumbnailRendering: 'wadors',
+    //     enableStudyLazyLoad: true,
+    //     supportsFuzzyMatching: false,
+    //     supportsWildcard: true,
+    //     staticWado: true,
+    //     singlepart: 'bulkdata,video',
+    //     // whether the data source should use retrieveBulkData to grab metadata,
+    //     // and in case of relative path, what would it be relative to, options
+    //     // are in the series level or study level (some servers like series some study)
+    //     bulkDataURI: {
+    //       enabled: true,
+    //       relativeResolution: 'studies',
+    //     },
+    //     omitQuotationForMultipartRequest: true,
+    //   },
+    // },
+    // {
+    //   namespace: '@ohif/extension-default.dataSourcesModule.dicomwebproxy',
+    //   sourceName: 'dicomwebproxy',
+    //   configuration: {
+    //     friendlyName: 'dicomweb delegating proxy',
+    //     name: 'dicomwebproxy',
+    //   },
+    // },
+    // {
+    //   namespace: '@ohif/extension-default.dataSourcesModule.dicomjson',
+    //   sourceName: 'dicomjson',
+    //   configuration: {
+    //     friendlyName: 'dicom json',
+    //     name: 'json',
+    //   },
+    // },
+    // {
+    //   namespace: '@ohif/extension-default.dataSourcesModule.dicomlocal',
+    //   sourceName: 'dicomlocal',
+    //   configuration: {
+    //     friendlyName: 'dicom local',
+    //   },
+    // },
+
     {
       namespace: '@ohif/extension-default.dataSourcesModule.dicomweb',
       sourceName: 'dicomweb',
       configuration: {
-        friendlyName: 'AWS S3 Static wado server',
-        name: 'aws',
-        wadoUriRoot: 'https://d33do7qe4w26qo.cloudfront.net/dicomweb',
-        qidoRoot: 'https://d33do7qe4w26qo.cloudfront.net/dicomweb',
-        wadoRoot: 'https://d33do7qe4w26qo.cloudfront.net/dicomweb',
-        qidoSupportsIncludeField: false,
-        imageRendering: 'wadors',
-        thumbnailRendering: 'wadors',
-        enableStudyLazyLoad: true,
-        supportsFuzzyMatching: false,
-        supportsWildcard: true,
-        staticWado: true,
-        singlepart: 'bulkdata,video',
-        // whether the data source should use retrieveBulkData to grab metadata,
-        // and in case of relative path, what would it be relative to, options
-        // are in the series level or study level (some servers like series some study)
-        bulkDataURI: {
-          enabled: true,
-          relativeResolution: 'studies',
-        },
-        omitQuotationForMultipartRequest: true,
-      },
-    },
-    {
-      namespace: '@ohif/extension-default.dataSourcesModule.dicomweb',
-      sourceName: 'dicomweb2',
-      configuration: {
-        friendlyName: 'AWS S3 Static wado secondary server',
-        name: 'aws',
-        wadoUriRoot: 'https://d28o5kq0jsoob5.cloudfront.net/dicomweb',
-        qidoRoot: 'https://d28o5kq0jsoob5.cloudfront.net/dicomweb',
-        wadoRoot: 'https://d28o5kq0jsoob5.cloudfront.net/dicomweb',
-        qidoSupportsIncludeField: false,
+        friendlyName: 'Azure Dicom Web Server',
+        name: 'AzureDicomWebServer',
+
+        // Targetting Web app
+        // wadoUriRoot: 'https://scaida-dicom-service-clone.azurewebsites.net/v1',
+        // qidoRoot: 'https://scaida-dicom-service-clone.azurewebsites.net/v1',
+        // wadoRoot: 'https://scaida-dicom-service-clone.azurewebsites.net/v1',
+
+        // Via Front door
+        wadoUriRoot: 'https://scaida-dicom-app-e6f6engddhfqa5g6.z01.azurefd.net/v1',
+        qidoRoot: 'https://scaida-dicom-app-e6f6engddhfqa5g6.z01.azurefd.net/v1',
+        wadoRoot: 'https://scaida-dicom-app-e6f6engddhfqa5g6.z01.azurefd.net/v1',
+
+        // wadoUriRoot: 'https://tws-scaida-service-a9baf2embccufgct.z02.azurefd.net/v1',
+        // qidoRoot: 'https://tws-scaida-service-a9baf2embccufgct.z02.azurefd.net/v1',
+        // wadoRoot: 'https://tws-scaida-service-a9baf2embccufgct.z02.azurefd.net/v1',
+        qidoSupportsIncludeField: true,
         supportsReject: false,
         imageRendering: 'wadors',
         thumbnailRendering: 'wadors',
         enableStudyLazyLoad: true,
-        supportsFuzzyMatching: false,
-        supportsWildcard: true,
+        supportsFuzzyMatching: true,
+        supportsWildcard: false,
         staticWado: true,
         singlepart: 'bulkdata,video',
         // whether the data source should use retrieveBulkData to grab metadata,
@@ -85,23 +164,7 @@ window.config = {
           enabled: true,
           relativeResolution: 'studies',
         },
-        omitQuotationForMultipartRequest: true,
-      },
-    },
-    {
-      namespace: '@ohif/extension-default.dataSourcesModule.dicomwebproxy',
-      sourceName: 'dicomwebproxy',
-      configuration: {
-        friendlyName: 'dicomweb delegating proxy',
-        name: 'dicomwebproxy',
-      },
-    },
-    {
-      namespace: '@ohif/extension-default.dataSourcesModule.dicomjson',
-      sourceName: 'dicomjson',
-      configuration: {
-        friendlyName: 'dicom json',
-        name: 'json',
+        omitQuotationForMultipartRequest: false,
       },
     },
     {
