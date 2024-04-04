@@ -21,7 +21,7 @@ const StudyItem = ({
   return (
     <div
       className={classnames(
-        isActive ? 'bg-secondary-dark' : 'hover:bg-secondary-main bg-black',
+        isActive ? 'bg-secondary-dark' : 'hover:bg-secondary-main bg-white',
         baseClasses
       )}
       onClick={onClick}
@@ -59,7 +59,7 @@ const StudyItem = ({
               name="tracked"
               className="text-primary-light mr-2 w-4"
             />
-            {t('Tracked series', {trackedSeries: trackedSeries})}
+            {t('Tracked series', { trackedSeries: trackedSeries })}
           </div>
         </div>
       )}

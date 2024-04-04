@@ -119,25 +119,32 @@ window.config = {
     // Could use services manager here to bring up a dialog/modal if needed.
     console.warn('test, navigate to https://ohif.org/');
   },
-  // whiteLabeling: {
-  //   /* Optional: Should return a React component to be rendered in the "Logo" section of the application's Top Navigation bar */
-  //   createLogoComponentFn: function (React) {
-  //     return React.createElement(
-  //       'a',
-  //       {
-  //         target: '_self',
-  //         rel: 'noopener noreferrer',
-  //         className: 'text-purple-600 line-through',
-  //         href: '/',
-  //       },
-  //       React.createElement('img',
-  //         {
-  //           src: './assets/customLogo.svg',
-  //           className: 'w-8 h-8',
-  //         }
-  //       ))
-  //   },
-  // },
+  whiteLabeling: {
+    /* Optional: Should return a React component to be rendered in the "Logo" section of the application's Top Navigation bar */
+    createLogoComponentFn: function (React) {
+      return React.createElement('img',
+        {
+          src: './assets/scaida-logo.svg',
+          className: 'w-16 h-16',
+        }
+      )
+      // React.createElement(
+      //   'a',
+      //   {
+      //     target: '_self',
+      //     rel: 'noopener noreferrer',
+      //     className: 'text-purple-600 line-through',
+      //     href: '/',
+      //   },
+      //   React.createElement('img',
+      //     {
+      //       src: './assets/scaida-logo.svg',
+      //       // className: 'w-12 h-12',
+      //       style: { width: '100px', height: '100px' },
+      //     }
+      //   ))
+    },
+  },
   hotkeys: [
     {
       commandName: 'incrementActiveViewport',

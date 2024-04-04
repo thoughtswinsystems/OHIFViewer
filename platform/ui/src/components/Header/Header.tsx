@@ -65,9 +65,9 @@ function Header({
         <div className="absolute right-0 top-1/2 flex -translate-y-1/2 select-none items-center">
           {(showPatientInfo === PatientInfoVisibility.VISIBLE ||
             showPatientInfo === PatientInfoVisibility.VISIBLE_COLLAPSED) && (
-            <HeaderPatientInfo servicesManager={servicesManager} />
-          )}
-          <div className="border-primary-dark mx-1.5 h-[25px] border-r"></div>
+              <HeaderPatientInfo servicesManager={servicesManager} />
+            )}
+          <div className="border-white mx-1.5 h-[25px] border-r"></div>
           <div className="flex-shrink-0">
             <Dropdown
               id="options"

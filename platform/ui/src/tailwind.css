@@ -12,7 +12,7 @@
 }
 
 body {
-  background-color: #000;
+  background-color: #fff;
 }
 
 /* Truncate 2 lines utility */
@@ -31,4 +31,13 @@ body {
   cursor: not-allowed;
   user-select: none;
   opacity: 0.5;
+}
+
+.bg-new {
+  background-color: #EFF3F9;
+  /* Use the color value you defined */
+}
+
+.bg-scaida-brand {
+  background-color: #54C6D4;
 }
