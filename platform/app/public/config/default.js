@@ -35,19 +35,21 @@ window.config = {
   // },
 
   // Prod OIDC settings
-  oidc: {
-    // ~ REQUIRED
-    // Authorization Server URL
-    authority: 'https://login.microsoftonline.com/b031c552-2e5b-4f4f-9006-46c53d23f23a/v2.0/',
-    client_id: '622b2e67-dc4f-4bf9-9cff-cc7ef62429f9',
-    redirect_uri: '/callback', // `OHIFStandaloneViewer.js`
-    response_type: 'token', // "implicit"
-    scope: 'openid api://d6c86043-8a7c-444c-a0a3-07cfd8080532/user_impersonation', // email profile openid  https://dicom.healthcareapis.azure.com
-    // ~ OPTIONAL
-    post_logout_redirect_uri: '/logout-redirect.html',
-    automaticSilentRenew: true,
-    revokeAccessTokenOnSignout: true
-  },
+  oidc: [
+    {
+      // ~ REQUIRED
+      // Authorization Server URL
+      authority: 'https://login.microsoftonline.com/b031c552-2e5b-4f4f-9006-46c53d23f23a/v2.0/',
+      client_id: '622b2e67-dc4f-4bf9-9cff-cc7ef62429f9',
+      redirect_uri: '/callback', // `OHIFStandaloneViewer.js`
+      response_type: 'token', // "implicit"
+      scope: 'openid api://d6c86043-8a7c-444c-a0a3-07cfd8080532/user_impersonation', // email profile openid  https://dicom.healthcareapis.azure.com
+      // ~ OPTIONAL
+      post_logout_redirect_uri: '/logout-redirect.html',
+      automaticSilentRenew: true,
+      revokeAccessTokenOnSignout: true
+    }
+  ],
   dataSources: [
     // {
     //   namespace: '@ohif/extension-default.dataSourcesModule.dicomweb',
