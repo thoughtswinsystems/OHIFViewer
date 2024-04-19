@@ -71,7 +71,7 @@ const StudyBrowser = ({
   return (
     <React.Fragment>
       <div
-        className="w-100 border-light bg-white flex h-16 flex-row items-center justify-center border-b p-4"
+        className="w-100 bg-background flex h-16 flex-row items-center justify-center p-4"
         data-cy={'studyBrowser-panel'}
       >
         {/* TODO Revisit design of LegacyButtonGroup later - for now use LegacyButton for its children.*/}
@@ -98,7 +98,7 @@ const StudyBrowser = ({
                 className={'min-w-18 p-2 text-base text-white'}
                 size="initial"
                 color={color}
-                bgColor={isActive ? 'bg-new' : 'bg-white'}
+                bgColor={isActive ? 'bg-background' : 'bg-white'}
                 onClick={() => {
                   onClickTab(name);
                 }}
@@ -110,7 +110,7 @@ const StudyBrowser = ({
           })}
         </LegacyButtonGroup>
       </div>
-      <div className="ohif-scrollbar invisible-scrollbar flex flex-1 flex-col overflow-auto">
+      <div className="ohif-scrollbar invisible-scrollbar bg-background flex flex-1 flex-col overflow-auto">
         {getTabContent()}
       </div>
     </React.Fragment>
@@ -168,7 +168,7 @@ StudyBrowser.propTypes = {
   ),
 };
 
-const noop = () => { };
+const noop = () => {};
 
 StudyBrowser.defaultProps = {
   onClickTab: noop,

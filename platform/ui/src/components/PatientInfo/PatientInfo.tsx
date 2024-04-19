@@ -48,7 +48,7 @@ function PatientInfo({
               <div className="ml-2 flex flex-col">
                 <span
                   className="text-base font-bold text-white"
-                  title={patientName}
+                  title={'patientName'}
                 >
                   {patientName}
                 </span>

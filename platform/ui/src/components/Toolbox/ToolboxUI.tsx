@@ -21,8 +21,8 @@ function ToolboxUI(props) {
   const render = () => {
     return (
       <>
-        <div className="flex flex-col bg-black">
-          <div className="bg-primary-dark mt-0.5 flex flex-wrap py-2">
+        <div className="bg-background flex flex-col">
+          <div className="bg-background mt-0.5 flex flex-wrap py-2">
             {toolbarButtons.map((toolDef, index) => {
               if (!toolDef) {
                 return null;

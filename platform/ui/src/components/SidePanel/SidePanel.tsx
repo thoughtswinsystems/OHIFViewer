@@ -2,9 +2,11 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { CSSProperties, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { utils } from '@ohif/core';
 
 import Icon from '../Icon';
 import Tooltip from '../Tooltip';
+import PatientInfo from '../PatientInfo';
 
 type StyleMap = {
   open: {
@@ -23,7 +25,7 @@ const gridHorizontalPadding = 10;
 const tabSpacerWidth = 2;
 
 const baseClasses =
-  'transition-all duration-300 ease-in-out bg-white border-white justify-start box-content flex flex-col';
+  'transition-all duration-300 ease-in-out bg-background border-white justify-start box-content flex flex-col';
 
 const classesMap = {
   open: {
@@ -158,6 +160,69 @@ const createBaseStyle = (expandedWidth: number) => {
     height: '99.8%',
   };
 };
+
+const { formatDate, formatPN } = utils;
+
+function usePatientInfo(servicesManager) {
+  const { displaySetService } = servicesManager.services;
+
+  const [patientInfo, setPatientInfo] = useState({
+    PatientName: '',
+    PatientID: '',
+    PatientSex: '',
+    PatientDOB: '',
+  });
+  const displaySets = displaySetService.getActiveDisplaySets();
+
+  const checkMixedPatients = PatientID => {
+    const displaySets = displaySetService.getActiveDisplaySets();
+    displaySets.forEach(displaySet => {
+      const instance = displaySet?.instances?.[0] || displaySet?.instance;
+      if (!instance) {
+        return;
+      }
+    });
+  };
+
+  const updatePatientInfo = () => {
+    const displaySets = displaySetService.getActiveDisplaySets();
+    const displaySet = displaySets[0];
+    const instance = displaySet?.instances?.[0] || displaySet?.instance;
+    if (!instance) {
+      return;
+    }
+    setPatientInfo({
+      PatientID: instance.PatientID || '',
+      PatientName: instance.PatientName ? formatPN(instance.PatientName.Alphabetic) : '',
+      PatientSex: instance.PatientSex || '',
+      PatientDOB: formatDate(instance.PatientBirthDate) || '', //PatientAge
+    });
+
+    checkMixedPatients(instance.PatientID || '');
+  };
+
+  useEffect(() => {
+    const subscription = displaySetService.subscribe(
+      displaySetService.EVENTS.DISPLAY_SETS_ADDED,
+      () => updatePatientInfo()
+    );
+    return () => subscription.unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    updatePatientInfo();
+  }, [displaySets]);
+
+  return { patientInfo };
+}
+
+const formatWithEllipsis = (str, maxLength) => {
+  if (str.length > maxLength) {
+    return str.substring(0, maxLength) + '...';
+  }
+  return str;
+};
+
 const SidePanel = ({
   side,
   className,
@@ -165,8 +230,16 @@ const SidePanel = ({
   tabs,
   onOpen,
   expandedWidth = 248,
+  servicesManager,
 }) => {
   const { t } = useTranslation('SidePanel');
+
+  const { patientInfo } = usePatientInfo(servicesManager);
+
+  const formattedPatientName = formatWithEllipsis(patientInfo.PatientName, 27);
+  const formattedPatientID = formatWithEllipsis(patientInfo.PatientID, 15);
+  const formattedPatientSex = formatWithEllipsis(patientInfo.PatientSex, 15);
+  const formattedPatientDOB = formatWithEllipsis(patientInfo.PatientDOB, 15);
 
   const [panelOpen, setPanelOpen] = useState(activeTabIndexProp !== null);
   const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -210,7 +283,7 @@ const SidePanel = ({
       <>
         <div
           className={classnames(
-            'bg-white flex h-[28px] w-full cursor-pointer items-center rounded-md',
+            'bg-background flex h-[28px] w-full cursor-pointer items-center rounded-md',
             side === 'left' ? 'justify-end pr-2' : 'justify-start pl-2'
           )}
           onClick={() => {
@@ -344,12 +417,23 @@ const SidePanel = ({
     );
   };
 
+  const getPatientDetails = () => {
+    return (
+      <div className="w-full pb-2 text-xs text-gray-400">
+        <p className="font-bold text-white">Name: {formattedPatientName}</p>
+        <p className="font-bold text-white">ID: {formattedPatientID}</p>
+        <p className="mt-1 flex justify-between">
+          <span>Sex: {formattedPatientSex}</span>
+          <span>Age: {formattedPatientDOB}</span>
+        </p>
+      </div>
+    );
+  };
+
   const getOneTabComponent = () => {
     return (
       <div
-        className={classnames(
-          'text-primary-active flex grow cursor-pointer justify-center self-center text-[13px]'
-        )}
+        className={classnames('text-primary-active mt-1 w-full text-center text-sm')}
         style={{
           ...(side === 'left'
             ? { marginLeft: `${closeIconWidth}px` }
@@ -358,14 +442,15 @@ const SidePanel = ({
         data-cy={`${tabs[0].name}-btn`}
         onClick={() => updatePanelOpen(prev => !prev)}
       >
-        <span>{tabs[0].label}</span>
+        <span>{side === 'left' && getPatientDetails()}</span>
+        <span>{side === 'right' && <span>{tabs[0].label}</span>}</span>
       </div>
     );
   };
 
   const getOpenStateComponent = () => {
     return (
-      <div className="bg-primary-dark flex rounded-t pt-1.5 pb-[2px]">
+      <div className="bg-button flex justify-between rounded py-1.5 pb-0.5">
         {getCloseIcon()}
         {tabs.length === 1 ? getOneTabComponent() : getTabGridComponent()}
       </div>
@@ -411,6 +496,7 @@ SidePanel.propTypes = {
   ]),
   onOpen: PropTypes.func,
   expandedWidth: PropTypes.number,
+  servicesManager: PropTypes.object.isRequired,
 };
 
 export default SidePanel;

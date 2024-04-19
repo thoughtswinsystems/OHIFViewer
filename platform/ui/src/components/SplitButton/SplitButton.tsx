@@ -32,8 +32,8 @@ const classes = {
       isActive
         ? isExpanded
           ? 'border-primary-dark !bg-primary-dark hover:border-primary-dark !text-primary-light'
-          : 'border-primary-light bg-primary-light border-2 rounded-md !p-2'
-        : `focus:!text-black focus:!rounded-md focus:!border-primary-light focus:!bg-primary-light ${isExpanded ? 'border-primary-dark bg-primary-dark !text-primary-light' : 'border-secondary-dark bg-secondary-dark group-hover/button:border-primary-dark group-hover/button:text-primary-light hover:!bg-primary-dark hover:border-primary-dark focus:!text-black'}`
+          : 'border-primary-light bg-primary-light rounded-md !p-2'
+        : `focus:!text-black focus:!rounded-md focus:!border-primary-light focus:!bg-primary-light ${isExpanded ? 'border-white bg-primary-dark !text-primary-light' : 'border-2 bg-button group-hover/button:border-primary-light group-hover/button:text-white hover:!bg-primary-light hover:border-primary-light focus:!text-black'}`
     ),
   Secondary: ({ isExpanded, primary }) =>
     classNames(
@@ -41,8 +41,8 @@ const classes = {
       isExpanded
         ? 'bg-primary-light !rounded-tr-md !rounded-br-md'
         : primary.isActive
-          ? 'bg-secondary-dark'
-          : 'hover:bg-primary-dark bg-secondary-dark group-hover/button:border-primary-dark'
+          ? 'bg-secondary'
+          : 'hover:bg-primary-dark bg-button group-hover/button:border-primary-light'
     ),
   SecondaryIcon: ({ isExpanded }) =>
     classNames(

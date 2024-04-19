@@ -59,7 +59,7 @@ function ViewerLayout({
 
   const getPanelData = id => {
     const { content, entry } = getComponent(id);
-
+    console.log('Pratik Entry', entry);
     return {
       id: entry.id,
       iconName: entry.iconName,
@@ -109,11 +109,13 @@ function ViewerLayout({
         servicesManager={servicesManager}
       />
       <div
-        className="relative flex w-full flex-row flex-nowrap items-stretch overflow-hidden bg-white"
+        className="bg-background relative flex w-full flex-row flex-nowrap items-stretch overflow-hidden"
         style={{ height: 'calc(100vh - 52px' }}
       >
         <React.Fragment>
-          {showLoadingIndicator && <LoadingIndicatorProgress className="h-full w-full bg-white" />}
+          {showLoadingIndicator && (
+            <LoadingIndicatorProgress className="bg-background h-full w-full" />
+          )}
           {/* LEFT SIDEPANELS */}
           {leftPanelComponents.length ? (
             <ErrorBoundary context="Left Panel">
@@ -127,7 +129,7 @@ function ViewerLayout({
           ) : null}
           {/* TOOLBAR + GRID */}
           <div className="flex h-full flex-1 flex-col">
-            <div className="relative flex h-full flex-1 items-center justify-center overflow-hidden bg-white">
+            <div className="bg-background relative flex h-full flex-1 items-center justify-center overflow-hidden">
               <ErrorBoundary context="Grid">
                 <ViewportGridComp
                   servicesManager={servicesManager}

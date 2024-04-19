@@ -70,7 +70,6 @@ function PanelStudyBrowser({
       }
 
       let qidoStudiesForPatient = qidoForStudyUID;
-
       // try to fetch the prior studies based on the patientID if the
       // server can respond.
       try {

@@ -41,8 +41,7 @@ window.config = {
         style: {
           display: 'block',
           textIndent: '-9999px',
-          // background: 'url(/svg-file-hosted-at-domain-root.svg)',
-          backgroundColor: 'white',
+          background: 'url(/svg-file-hosted-at-domain-root.svg)',
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
           width: '200px',
