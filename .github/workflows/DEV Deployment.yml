@@ -24,10 +24,10 @@
 # For more information on the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # For more samples to get started with GitHub Action workflows to deploy to Azure: https://github.com/Azure/actions-workflow-samples
 
-name: PROD Deployment - Container 
+name: DEV Deployment - Container 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "develop" ]
   workflow_dispatch:
 
 permissions:
@@ -37,7 +37,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: Production
+    environment: Development
     
     steps:
       - uses: actions/checkout@v4
@@ -48,7 +48,7 @@ jobs:
       - name: Docker Login
         uses: azure/docker-login@v1
         with:
-          login-server: ohifimages.azurecr.io
+          login-server: twsohifviewer.azurecr.io
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
@@ -56,7 +56,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ohifimages.azurecr.io/ohif-viewer-image:${{ github.sha }}
+          tags: twsohifviewer.azurecr.io/ohif-viewer:${{ github.sha }}
           file: ./Dockerfile
   
       # - name: Log in to GitHub container registry
@@ -81,7 +81,7 @@ jobs:
       contents: none
     runs-on: ubuntu-latest
     needs: build
-    environment: Production
+    environment: Development
 
     steps:
       - name: Lowercase the repo name and username
@@ -91,6 +91,6 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'app-ohifviewer-prod-centralindia'
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          images: 'ohifimages.azurecr.io/ohif-viewer-image:${{ github.sha }}'
+          app-name: 'ohif-viewer-app'
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_DEVELOP }}
+          images: 'twsohifviewer.azurecr.io/ohif-viewer:${{ github.sha }}'
