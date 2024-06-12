@@ -40,10 +40,10 @@ window.config = {
       // ~ REQUIRED
       // Authorization Server URL
       authority: 'https://login.microsoftonline.com/b031c552-2e5b-4f4f-9006-46c53d23f23a/v2.0/',
-      client_id: '622b2e67-dc4f-4bf9-9cff-cc7ef62429f9',
+      client_id: '8bd5994c-1881-4b85-bf1c-5a32f8df97c9',
       redirect_uri: '/callback', // `OHIFStandaloneViewer.js`
       response_type: 'token', // "implicit"
-      scope: 'openid api://d6c86043-8a7c-444c-a0a3-07cfd8080532/user_impersonation', // email profile openid  https://dicom.healthcareapis.azure.com
+      scope: 'openid api://3f595ec1-9609-4865-909a-040410c5a120/user_impersonation', // email profile openid  https://dicom.healthcareapis.azure.com
       // ~ OPTIONAL
       post_logout_redirect_uri: '/logout-redirect.html',
       automaticSilentRenew: true,
@@ -143,9 +143,9 @@ window.config = {
         // wadoRoot: 'https://scaida-dicom-service-clone.azurewebsites.net/v1',
 
         // Via Front door
-        wadoUriRoot: 'https://scaida-dicom-app-e6f6engddhfqa5g6.z01.azurefd.net/v1',
-        qidoRoot: 'https://scaida-dicom-app-e6f6engddhfqa5g6.z01.azurefd.net/v1',
-        wadoRoot: 'https://scaida-dicom-app-e6f6engddhfqa5g6.z01.azurefd.net/v1',
+        wadoUriRoot: 'https://tws-scaida-service-a9baf2embccufgct.z02.azurefd.net/v1',
+        qidoRoot: 'https://tws-scaida-service-a9baf2embccufgct.z02.azurefd.net/v1',
+        wadoRoot: 'https://tws-scaida-service-a9baf2embccufgct.z02.azurefd.net/v1',
 
         // wadoUriRoot: 'https://tws-scaida-service-a9baf2embccufgct.z02.azurefd.net/v1',
         // qidoRoot: 'https://tws-scaida-service-a9baf2embccufgct.z02.azurefd.net/v1',
