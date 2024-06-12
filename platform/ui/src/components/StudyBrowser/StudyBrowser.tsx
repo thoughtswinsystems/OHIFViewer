@@ -71,13 +71,13 @@ const StudyBrowser = ({
   return (
     <React.Fragment>
       <div
-        className="w-100 border-secondary-light bg-primary-dark flex h-16 flex-row items-center justify-center border-b p-4"
+        className="w-100 bg-background flex h-16 flex-row items-center justify-center p-4"
         data-cy={'studyBrowser-panel'}
       >
         {/* TODO Revisit design of LegacyButtonGroup later - for now use LegacyButton for its children.*/}
         <LegacyButtonGroup
           variant="outlined"
-          color="secondary"
+          color="white"
           splitBorder={false}
         >
           {tabs.map(tab => {
@@ -89,7 +89,7 @@ const StudyBrowser = ({
               'class:StudyBrowser'
             ) || {
               true: 'default',
-              false: 'default',
+              false: 'white',
             };
             const color = classStudyBrowser[`${isActive}`];
             return (
@@ -98,7 +98,7 @@ const StudyBrowser = ({
                 className={'min-w-18 p-2 text-base text-white'}
                 size="initial"
                 color={color}
-                bgColor={isActive ? 'bg-primary-main' : 'bg-black'}
+                bgColor={isActive ? 'bg-background' : 'bg-white'}
                 onClick={() => {
                   onClickTab(name);
                 }}
@@ -110,7 +110,7 @@ const StudyBrowser = ({
           })}
         </LegacyButtonGroup>
       </div>
-      <div className="ohif-scrollbar invisible-scrollbar flex flex-1 flex-col overflow-auto">
+      <div className="ohif-scrollbar invisible-scrollbar bg-background flex flex-1 flex-col overflow-auto">
         {getTabContent()}
       </div>
     </React.Fragment>

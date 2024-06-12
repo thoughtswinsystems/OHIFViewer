@@ -16,7 +16,6 @@ function createDicomWebProxyApi(dicomWebProxyConfig, servicesManager) {
   const implementation = {
     initialize: async ({ params, query }) => {
       const url = query.get('url');
-
       if (!url) {
         throw new Error(`No url for '${name}'`);
       } else {

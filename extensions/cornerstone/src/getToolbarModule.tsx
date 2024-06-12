@@ -33,7 +33,7 @@ export default function getToolbarModule({ commandsManager, servicesManager }) {
         if (!toolGroup || !toolGroup.hasTool(toolName)) {
           return {
             disabled: true,
-            className: '!text-common-bright ohif-disabled',
+            className: '!text-[#A2B8BA] ohif-disabled',
           };
         }
 
@@ -42,8 +42,8 @@ export default function getToolbarModule({ commandsManager, servicesManager }) {
         return {
           disabled: false,
           className: isPrimaryActive
-            ? '!text-black bg-primary-light'
-            : '!text-common-bright hover:!bg-primary-dark hover:!text-primary-light',
+            ? '!text-gray-500 bg-button'
+            : '!text-gray-500 hover:!bg-primary-light hover:!text-white',
           // Todo: isActive right now is used for nested buttons where the primary
           // button needs to be fully rounded (vs partial rounded) when active
           // otherwise it does not have any other use
@@ -103,7 +103,7 @@ export default function getToolbarModule({ commandsManager, servicesManager }) {
       name: 'evaluate.action',
       evaluate: ({ viewportId, button }) => {
         return {
-          className: '!text-common-bright hover:!bg-primary-dark hover:text-primary-light',
+          className: '!text-gray-500 hover:!bg-primary-light hover:!text-white',
         };
       },
     },

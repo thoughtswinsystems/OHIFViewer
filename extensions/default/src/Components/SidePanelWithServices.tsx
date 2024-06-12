@@ -56,6 +56,7 @@ const SidePanelWithServices = ({
         setHasBeenOpened(true);
       }}
       expandedWidth={expandedWidth}
+      servicesManager={servicesManager}
     ></SidePanel>
   );
 };

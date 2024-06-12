@@ -30,9 +30,9 @@ module.exports = {
 
       primary: {
         light: '#5acce6',
-        main: '#0944b3',
+        main: '#EFF3F9',
         dark: '#090c29',
-        active: '#348cfd',
+        active: '#EFF3F9',
       },
 
       inputfield: {
@@ -44,7 +44,7 @@ module.exports = {
 
       secondary: {
         light: '#3a3f99',
-        main: '#2b166b',
+        main: '#EFF3F9',
         dark: '#041c4a',
         active: '#1f1f27',
       },
