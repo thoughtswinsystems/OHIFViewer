@@ -47,7 +47,7 @@ window.config = {
       // ~ OPTIONAL
       post_logout_redirect_uri: '/logout-redirect.html',
       automaticSilentRenew: true,
-      revokeAccessTokenOnSignout: true
+      revokeAccessTokenOnSignout: true,
     },
   ],
   dataSources: [

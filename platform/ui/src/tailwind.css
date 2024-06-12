@@ -12,7 +12,7 @@
 }
 
 body {
-  background-color: #000;
+  background-color: #fff;
 }
 
 /* Truncate 2 lines utility */
@@ -31,4 +31,33 @@ body {
   cursor: not-allowed;
   user-select: none;
   opacity: 0.5;
+}
+
+.bg-background {
+  background-color: #1e282c
+  /* Use the color value you defined */
+}
+
+.bg-button {
+  background-color: #324147
+}
+
+.bg-black {
+  background-color: #070707;
+}
+
+.text-basic-dark {
+  color: #2c2525;
+}
+
+.text-gray-500 {
+  color: #a0aec0;
+}
+
+.bg-scaida-brand {
+  background-color: #54C6D4;
+}
+
+.bg-header {
+  background-color: #1e282c;
 }

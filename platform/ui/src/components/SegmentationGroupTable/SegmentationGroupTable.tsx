@@ -74,7 +74,7 @@ const SegmentationGroupTable = ({
   const { t } = useTranslation('SegmentationTable');
 
   return (
-    <div className="flex min-h-0 flex-col bg-black text-[13px] font-[300]">
+    <div className="bg-background flex min-h-0 flex-col text-sm font-light">
       <PanelSection
         title={t('Segmentation')}
         actionIcons={
@@ -98,7 +98,7 @@ const SegmentationGroupTable = ({
             segmentationConfig={segmentationConfig}
           />
         )}
-        <div className="bg-primary-dark">
+        <div className="bg-background">
           {segmentations?.length === 0 ? (
             <div className="select-none rounded-[4px]">
               {showAddSegmentation && !disableEditing && (
