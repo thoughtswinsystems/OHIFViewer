@@ -59,7 +59,6 @@ function ViewerLayout({
 
   const getPanelData = id => {
     const { content, entry } = getComponent(id);
-    console.log('Pratik Entry', entry);
     return {
       id: entry.id,
       iconName: entry.iconName,

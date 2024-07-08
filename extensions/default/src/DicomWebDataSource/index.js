@@ -1,6 +1,5 @@
 import { api } from 'dicomweb-client';
 import { DicomMetadataStore, IWebApiDataSource, utils, errorHandler, classes } from '@ohif/core';
-//Pratik
 import {
   mapParams,
   search as qidoSearch,
@@ -381,7 +380,6 @@ function createDicomWebApi(dicomWebConfig, servicesManager) {
        */
       const addRetrieveBulkData = instance => {
         const naturalized = naturalizeDataset(instance);
-        // Pratik
         // if we know the server doesn't use bulkDataURI, then don't
         if (!dicomWebConfig.bulkDataURI?.enabled) {
           return naturalized;
