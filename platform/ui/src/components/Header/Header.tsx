@@ -53,8 +53,12 @@ function Header({
                 className="text-primary-active w-8"
               />
             )}
-            <div className="ml-1">
-              {WhiteLabeling?.createLogoComponentFn?.(React, props) || <Svg name="logo-ohif" />}
+            <div className="mt-0 ml-1">
+              <img
+                src="./assets/scaida-logo.svg"
+                width={80}
+                alt="Scaida Logo"
+              ></img>
             </div>
           </div>
         </div>
@@ -63,13 +67,19 @@ function Header({
           <div className="flex items-center justify-center space-x-2">{children}</div>
         </div>
         <div className="absolute right-0 top-1/2 flex -translate-y-1/2 select-none items-center">
-          {(showPatientInfo === PatientInfoVisibility.VISIBLE ||
+          {/* {(showPatientInfo === PatientInfoVisibility.VISIBLE ||
             showPatientInfo === PatientInfoVisibility.VISIBLE_COLLAPSED) && (
             <HeaderPatientInfo servicesManager={servicesManager} />
-          )}
-          <div className="border-primary-dark mx-1.5 h-[25px] border-r"></div>
+          )} */}
+          {/* <div className="mx-1.5 h-[25px] border-r border-white"></div> */}
           <div className="flex-shrink-0">
-            <Dropdown
+            <img
+              src="./assets/mlhealth-logo.svg"
+              className="mr-2"
+              width={100}
+              alt="MLHealth 360 Logo"
+            ></img>
+            {/* <Dropdown
               id="options"
               showDropdownIcon={false}
               list={menuOptions}
@@ -80,11 +90,11 @@ function Header({
                 variant="text"
                 color="inherit"
                 size="initial"
-                className="text-primary-active hover:bg-primary-dark h-full w-full"
+                className="text-primary-active hover:bg-scaida-brand h-full w-full"
               >
                 <Icon name="icon-settings" />
               </IconButton>
-            </Dropdown>
+            </Dropdown> */}
           </div>
         </div>
       </div>
