@@ -39,11 +39,11 @@ window.config = {
     {
       // ~ REQUIRED
       // Authorization Server URL
-      authority: 'https://login.microsoftonline.com/238066ae-a663-4bc6-9d70-155d85f5980d/v2.0/',
-      client_id: 'b7dd45d2-07ee-45a6-8d27-811cb499ad4e',
+      authority: 'https://login.microsoftonline.com/b031c552-2e5b-4f4f-9006-46c53d23f23a/v2.0/',
+      client_id: '8bd5994c-1881-4b85-bf1c-5a32f8df97c9',
       redirect_uri: '/callback', // `OHIFStandaloneViewer.js`
       response_type: 'token', // "implicit"
-      scope: 'openid api://bd0ac1df-d30c-4206-a255-f205cbfedd49/user_impersonation', // email profile openid  https://dicom.healthcareapis.azure.com
+      scope: 'openid api://3f595ec1-9609-4865-909a-040410c5a120/user_impersonation', // email profile openid  https://dicom.healthcareapis.azure.com
       // ~ OPTIONAL
       post_logout_redirect_uri: '/logout-redirect.html',
       automaticSilentRenew: true,
